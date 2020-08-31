@@ -246,9 +246,11 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
             default:
                 break;
         }
+ 
+        options.sortDescriptors = @[
+            [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES],
+        ];
         
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending: NO]];
-
         self.fetchResult = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:options];
         
         if ([self isAutoDeselectEnabled] && self.imagePickerController.selectedAssets.count > 0) {
